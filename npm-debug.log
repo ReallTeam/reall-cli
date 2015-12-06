@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'link' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.40
+4 verbose linkPkg /home/mapr/reall-cli
+5 verbose link build target /usr/lib/node_modules/reall-cli
+6 verbose install where,what [ '/home/mapr/reall-cli', [] ]
+7 verbose readDependencies using package.json deps
+8 verbose install where, deps [ '/home/mapr/reall-cli', [] ]
+9 info preinstall reall-cli@0.0.1
+10 verbose readDependencies using package.json deps
+11 silly resolved []
+12 info build /home/mapr/reall-cli
+13 verbose linkStuff [ false, false, false, '/home/mapr' ]
+14 info linkStuff reall-cli@0.0.1
+15 verbose linkBins reall-cli@0.0.1
+16 verbose linkMans reall-cli@0.0.1
+17 verbose rebuildBundles reall-cli@0.0.1
+18 info install reall-cli@0.0.1
+19 info postinstall reall-cli@0.0.1
+20 info prepublish reall-cli@0.0.1
+21 info build /usr/lib/node_modules/reall-cli
+22 verbose linkStuff [ true, '/usr/lib/node_modules', true, '/usr/lib/node_modules' ]
+23 info linkStuff reall-cli@0.0.1
+24 verbose linkBins reall-cli@0.0.1
+25 verbose link bins [ { reall: 'bin/real-cli.js' }, '/usr/bin', true ]
+26 verbose linkMans reall-cli@0.0.1
+27 error Error: ENOENT, chmod '/usr/lib/node_modules/reall-cli/bin/real-cli.js'
+28 error If you need help, you may report this *entire* log,
+28 error including the npm and node versions, at:
+28 error     <http://github.com/npm/npm/issues>
+29 error System Linux 2.6.32-573.el6.x86_64
+30 error command "/usr/bin/node" "/usr/bin/npm" "link"
+31 error cwd /home/mapr/reall-cli
+32 error node -v v0.10.40
+33 error npm -v 1.4.28
+34 error path /usr/lib/node_modules/reall-cli/bin/real-cli.js
+35 error code ENOENT
+36 error errno 34
+37 verbose exit [ 34, true ]

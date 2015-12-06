@@ -1,0 +1,18 @@
+{
+  "name": "reall-cli",
+  "version": "0.0.1",
+  "description": "A command line interface for Reall Hadoop Tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hadoop",
+    "nosql"
+  ],
+  "author": "Carlos Echeverria",
+  "license": "MIT",
+  "bin": {
+    "reall": "bin/reall-cli.js"
+  }
+}
