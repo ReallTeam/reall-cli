@@ -14,5 +14,8 @@
   "license": "MIT",
   "bin": {
     "reall": "bin/reall-cli.js"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
