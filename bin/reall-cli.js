@@ -37,10 +37,12 @@ program.command('hd')
     .description('Hadoop tools for real time data display')
     .option("-r, --reduce", "Runs the standar command for Hadoop MapReduce")
     .action(function (options) {
+
+	console.log(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'])
+
 	pepe();
     }
 );
-
 
 function pepe() {
     var reallPath = '/usr/lib/node_modules/reall';
