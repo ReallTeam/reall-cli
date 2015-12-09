@@ -18,7 +18,7 @@
   "dependencies": {
     "commander": "^2.9.0",
     "path": "^0.12.7",
-    "pretty-message": "git+https://cecheverria@bitbucket.org/cecheverria/pretty-message.git",
-    "reall": "^0.0.0"
+    "pretty-message": "^0.1.1",
+    "reall": "0.0.3"
   }
 }
