@@ -1,19 +1,17 @@
 #!/usr/bin/env node
 
 /**
+ * Reall Project Coommand Line Interface
  *
+ * @type {exports}
  */
 var reall = require('reall'),
     program = require('commander'),
+    hadoopCommand = require('./hadoopCommand'),
     pretty = require('pretty-message'),
     path = require("path"),
     pkg = require('../package.json')
     ;
-
-//console.log("Hi, this is the Reall command line in action");
-//console.log("current dir ", process.cwd());
-
-
 
 // Get version number from package.json file
 program.version(pkg.version);
@@ -31,42 +29,42 @@ program.command('*')
     });
 
 /**
- * Restart command
+ * Hadoop command
  */
 program.command('hd')
-    .description('Hadoop tools for real time data display')
-    .option("-r, --reduce", "Runs the standar command for Hadoop MapReduce")
+    .description('Run basic Hadoop commands')
+    .option("-j, --job [job]", "The job name identifier you want to run")
+    .option("-m, --mapper [mapper]", "The mapper script to be used on hadoop job")
+    .option("-r, --reducer [reducer]", "The reducer script to be used on hadoop job")
+    .option("-c, --combiner [combiner]", "The combiner script to be used on hadoop job")
+    .option("-i, --input [input]", "The input directory for the hadoop job")
+    .option("-o, --output [output]", "The output directory for the hadoop job")
+    .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop job completes successfully")
     .action(function (options) {
 
-	console.log(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'])
-
-	pepe();
+        hadoopCommand(options);
     }
 );
 
-function pepe() {
-    var reallPath = '/usr/lib/node_modules/reall';
-    
-    reall.hadoop.mapReduce("Running the Reall haddop tool", "/home/mapr/trainning/code/mapperByWeekday.py", "/home/mapr/trainning/code/reducerByWeekday.py", 
-			   "input/mapperByWeekday/purchases_100.txt", "out/mapperByWeekday", false, function (error, stdout, stderr) {
+/**
+ * Hadoop command
+ */
+program.command('add')
+    .description('Add new objects to the Reall instance')
+    .option("-j, --job [job]", "The Job Name identifier")
+    .option("-m, --mapper [mapper]", "The mapper script to be used on hadoop job")
+    .option("-r, --reducer [reducer]", "The reducer script to be used on hadoop job")
+    .option("-c, --combiner [combiner]", "The combiner script to be used on hadoop job")
+    .option("-i, --input [input]", "The input directory for the hadoop job")
+    .option("-o, --output [output]", "The output directory for the hadoop job")
+    .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop job completes successfully")
+    .action(function (options) {
 
-	pretty.alert();
-
-	if (error) {
-	    pretty.failed("Fail runnig mapReduce");
-	    pretty.inform("%s", error);
-	    data = "Fail running mapReduce: " + error;
-	}
-	else {
-	    //data = "Ok process: " + stdout;
-	    pretty.done("MapReduce wass susessfully executed");
-	    pretty.inform("Please see output on Hadoop file system: %s", "out/mapperByWeekday");
-	}
-	    
-	//callback(data /*<<== "data buffer to be saved on session"*/);
-    });
-}
+        pretty.alert('');
+        pretty.alert('This command is under construction');
+        pretty.alert('');
+    }
+);
 
 // Invoke the command execution
 program.parse(process.argv);
-

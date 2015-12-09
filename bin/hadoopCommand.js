@@ -4,55 +4,59 @@
 
 var fs = require("fs"),
     path = require("path"),
-    pretty = require('./prettyMessage');
+    reall = require('reall'),
+    pretty = require('pretty-message');
 var slotJson,
     slotJsonFile;
 
-function configCommand(options) {
-    //Validate that we are located on a valid slot project
-    fs.exists( path.join(  process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'] , '.reall.json')
-        , function (exists) {
-            // Load local slot configuration
-            slotJsonFile = path.join(process.cwd(), 'slot.json');
+function hadoopCommand(options) {
+    if (options.job) {
+        pretty.alert('');
+        pretty.alert('This command is under construction');
+        pretty.alert('');
+    }
+    else {
+        if (options.mapper) {
+            if (options.reducer) {
+                if (options.input) {
+                    if (options.output) {
+                        // reall.hadoop.mapReduce("Running the Reall haddop tool",
+                        //                        "/home/mapr/trainning/code/mapperByWeekday.py",
+                        //                        "/home/mapr/trainning/code/reducerByWeekday.py",
+                    	// 		               "input/mapperByWeekday/purchases_100.txt",
+                        //                        "out/mapperByWeekday", false, function (error, stdout, stderr) {
+                        reall.hadoop.mapReduce("Running the Reall haddop tool", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, false, function (error, stdout, stderr) {
 
-	    if(exists)
-		slotJson = require(slotJsonFile);
-	    else
-		slotJson = {};
+                        	pretty.alert();
 
-            //pretty.alert("Port%s %s", slotJsonFile, typeof options.port);
-
-            if (options.port) {
-
-                var reg = new RegExp(/^\d+$/);
-                //
-                if(reg.test(options.port)) {
-                    // Setting server port
-                    slotJson.server.port = eval(options.port);
-
-                    // Update slot.json file
-                    cliActions.setConfigProperty(slotJson, slotJsonFile, 'server.port', function(err) {
-                        if (err)
-                            pretty.failed('setting server.port=%s', options.port);
-                        else
-                            pretty.done('server.port=%s was set', options.port);
-                        pretty.alert();
-                    });
+                        	if (error) {
+                        	    pretty.failed("Fail runnig mapReduce");
+                        	    pretty.inform("%s", error);
+                        	    data = "Fail running mapReduce: " + error;
+                        	}
+                        	else {
+                        	    //data = "Ok process: " + stdout;
+                        	    pretty.done("MapReduce wass susessfully executed");
+                        	    pretty.inform("Please see output on Hadoop file system: %s", "out/mapperByWeekday");
+                        	}
+                        });
+                    }
+                    else {
+                        pretty.inform("Please enter a valid output", "slot config -h")
+                    }
                 }
                 else {
-                    cliActions.showHelpMsg("Please enter a valid port number", "slot config -h")
+                    pretty.inform("Please enter a valid input", "slot config -h")
                 }
             }
             else {
-                cliActions.showHelpMsg("Please enter a valid command", "slot config -h")
+                pretty.inform("Please enter a valid reducer", "slot config -h")
             }
         }
-        //, function (exists) {
-            //pretty.alert();
-            //pretty.alert("It appears that you are not located on a project root folder, the 'slot.json' file was not found on current directory.");
-            //pretty.alert();
-        //}
-    );
+        else {
+            pretty.inform("Please enter a valid mapper", "reall hd -h")
+        }
+    }
 }
 
-module.exports = configCommand;
+module.exports = hadoopCommand;
