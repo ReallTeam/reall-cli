@@ -4,6 +4,7 @@
 
 var fs = require("fs"),
     path = require("path"),
+    mkdirp = require('mkdirp'),
     reall = require('reall'),
     pretty = require('pretty-message');
 var slotJson,
@@ -53,6 +54,56 @@ function addCommand(options) {
                         }
 
                         console.log(JSON.stringify(jsonJob, null, 4));
+
+                        var home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop');
+
+                        pretty.doing("Creating '%s' local file system", jsonJob.job);
+                        pretty.inform("home:\t\t", home);
+                        pretty.inform("--");
+                        pretty.inform("input:\t", jsonJob.input);
+                        pretty.inform("output:\t", jsonJob.output);
+                        pretty.inform("done:\t\t", jsonJob.done);
+                        pretty.inform("fail:\t\t", jsonJob.fail);
+
+                        mkdirp(path.join(home, jsonJob.input), function (err) {
+                            if (err) {
+                                pretty.failed("Fail creating input folder on '%s'", jsonJob.input);
+                                throw err;
+                            }
+                            else {
+                                pretty.doing("Creating output folder");
+
+                                mkdirp(path.join(home, jsonJob.output), function (err) {
+                                    if (err) {
+                                        pretty.failed("Fail creating output folder on '%s'", jsonJob.output);
+                                        throw err;
+                                    }
+                                    else {
+                                        pretty.doing("Creating done folder");
+
+                                        mkdirp(path.join(home, jsonJob.done), function (err) {
+                                            if (err) {
+                                                pretty.failed("Fail creating done folder on '%s'", jsonJob.done);
+                                                throw err;
+                                            }
+                                            else {
+                                                pretty.doing("Creating fail folder");
+
+                                                mkdirp(path.join(home, jsonJob.fail), function (err) {
+                                                    if (err) {
+                                                        pretty.failed("Fail creating fail folder on '%s'", jsonJob.fail);
+                                                        throw err;
+                                                    }
+                                                    else {
+                                                        pretty.done("Local file system was correctly created");
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
                     }
                     else {
                         pretty.inform("Please enter a valid input folder", "reall add -h")
