@@ -8,6 +8,7 @@
 var reall = require('reall'),
     program = require('commander'),
     hadoopCommand = require('./hadoopCommand'),
+    addCommand = require('./addCommand'),
     pretty = require('pretty-message'),
     path = require("path"),
     pkg = require('../package.json')
@@ -34,12 +35,12 @@ program.command('*')
 program.command('hd')
     .description('Run basic Hadoop commands')
     .option("-j, --job [job]", "The job name identifier you want to run")
-    .option("-m, --mapper [mapper]", "The mapper script to be used on hadoop job")
-    .option("-r, --reducer [reducer]", "The reducer script to be used on hadoop job")
-    .option("-c, --combiner [combiner]", "The combiner script to be used on hadoop job")
-    .option("-i, --input [input]", "The input directory for the hadoop job")
-    .option("-o, --output [output]", "The output directory for the hadoop job")
-    .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop job completes successfully")
+    .option("-m, --mapper [mapper]", "The mapper script to be used on hadoop command")
+    .option("-r, --reducer [reducer]", "The reducer script to be used on hadoop command")
+    .option("-c, --combiner [combiner]", "The combiner script to be used on hadoop command")
+    .option("-i, --input [input]", "The input directory for the hadoop command")
+    .option("-o, --output [output]", "The output directory for the hadoop command")
+    .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop command completes successfully")
     .action(function (options) {
 
         hadoopCommand(options);
@@ -47,7 +48,7 @@ program.command('hd')
 );
 
 /**
- * Hadoop command
+ * Add command
  */
 program.command('add')
     .description('Add new objects to the Reall instance')
@@ -60,9 +61,11 @@ program.command('add')
     .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop job completes successfully")
     .action(function (options) {
 
-        pretty.alert('');
-        pretty.alert('This command is under construction');
-        pretty.alert('');
+        // pretty.alert('');
+        // pretty.alert('This command is under construction');
+        // pretty.alert('');
+
+        addCommand(options);
     }
 );
 
