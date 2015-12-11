@@ -53,7 +53,7 @@ function addCommand(options) {
                             fail: [options.job, 'fail'].join('/')
                         }
 
-                        console.log(JSON.stringify(jsonJob, null, 4));
+                        // console.log(JSON.stringify(jsonJob, null, 4));
 
                         var home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop');
 

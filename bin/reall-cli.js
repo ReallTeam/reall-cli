@@ -48,10 +48,27 @@ program.command('hd')
 );
 
 /**
+ * File System command (fs)
+ */
+program.command('fs')
+    .description('Runs basic HDFS commands')
+    .option("-p, --put [put]", "Puts a file into hadoop file system")
+    .option("-g, --get [get]", "Pulls a file from hadoop file system")
+    .action(function (options) {
+
+        pretty.alert('');
+        pretty.alert('This command is under construction');
+        pretty.alert('');
+
+        // addCommand(options);
+    }
+);
+
+/**
  * Add command
  */
 program.command('add')
-    .description('Add new objects to the Reall instance')
+    .description('Add new Job Definitions to the Reall instance')
     .option("-j, --job [job]", "The Job Name identifier")
     .option("-m, --mapper [mapper]", "The mapper script to be used on hadoop job")
     .option("-r, --reducer [reducer]", "The reducer script to be used on hadoop job")
@@ -61,13 +78,10 @@ program.command('add')
     .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop job completes successfully")
     .action(function (options) {
 
-        // pretty.alert('');
-        // pretty.alert('This command is under construction');
-        // pretty.alert('');
-
         addCommand(options);
     }
 );
+
 
 // Invoke the command execution
 program.parse(process.argv);
