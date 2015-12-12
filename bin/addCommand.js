@@ -20,27 +20,6 @@ function addCommand(options) {
                         //                        "/home/mapr/trainning/code/reducerByWeekday.py",
                     	// 		                  "input/mapperByWeekday/purchases_100.txt",
                         //                        "out/mapperByWeekday", false, function (error, stdout, stderr)
-
-                        // reall.hadoop.mapReduce("Running MapReduce", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, false, function (error, stdout, stderr) {
-                        //
-                        // 	pretty.alert();
-                        //
-                        // 	if (error) {
-                        // 	    pretty.failed("Fail runnig mapReduce");
-                        // 	    pretty.inform("%s", error);
-                        // 	    data = "Fail running mapReduce: " + error;
-                        // 	}
-                        // 	else {
-                        //         pretty.done("MapReduce wass susessfully executed");
-                        // 	    pretty.inform("Please see output on Hadoop file system: %s", "out/mapperByWeekday");
-                        //
-                        //         /**
-                        //          * TODO:
-                        //          *  1. Add code to call the Transporter
-                        //          */
-                        // 	}
-                        // });
-
                         var jsonJob = {
                             job: options.job,
                             mapper: options.mapper,
@@ -52,7 +31,6 @@ function addCommand(options) {
                             done: [options.job, 'done'].join('/'),
                             fail: [options.job, 'fail'].join('/')
                         }
-
                         // console.log(JSON.stringify(jsonJob, null, 4));
 
                         var home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop');
@@ -96,6 +74,11 @@ function addCommand(options) {
                                                     }
                                                     else {
                                                         pretty.done("Local file system was correctly created");
+
+                                                        /**
+                                                         * TODO:
+                                                         *  1.  Add code to set the job details on ~/.reall.json file
+                                                         */
                                                     }
                                                 });
                                             }
