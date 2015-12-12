@@ -22,8 +22,6 @@ function hadoopCommand(options) {
                     	// 		                  "input/mapperByWeekday/purchases_100.txt",
                         //                        "out/mapperByWeekday", false, function (error, stdout, stderr) {
                         reall.hadoop.mapReduce("Running MapReduce", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, false, function (error, stdout, stderr, data) {
-                            //var endDateTime = new Date();
-                            //
                             pretty.inform();
                             // pretty.inform(data.out);
                             pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
