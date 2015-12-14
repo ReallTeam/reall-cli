@@ -8,9 +8,10 @@
 var reall = require('reall'),
     program = require('commander'),
     hadoopCommand = require('./hadoopCommand'),
+    fsCommand = require('./fsCommand'),
     addCommand = require('./addCommand'),
     pretty = require('pretty-message'),
-    path = require("path"),
+    path = require('path'),
     pkg = require('../package.json')
     ;
 
@@ -30,7 +31,7 @@ program.command('*')
     });
 
 /**
- * Hadoop command
+ * Hadoop command (hd)
  */
 program.command('hd')
     .description('Run basic Hadoop commands')
@@ -54,18 +55,19 @@ program.command('fs')
     .description('Runs basic HDFS commands')
     .option("-p, --put [put]", "Puts a file into hadoop file system")
     .option("-g, --get [get]", "Pulls a file from hadoop file system")
+    .option("-t, --target [target]", "The targeted files to be trasfered")
+    .option("-d, --destiny [destiny]", "The destiny folder where to locate trasfered files")
     .action(function (options) {
+        // pretty.alert('');
+        // pretty.alert('This command is under construction');
+        // pretty.alert('');
 
-        pretty.alert('');
-        pretty.alert('This command is under construction');
-        pretty.alert('');
-
-        // addCommand(options);
+        fsCommand(options);
     }
 );
 
 /**
- * Add command
+ * Add command (add)
  */
 program.command('add')
     .description('Add new Job Definitions to the Reall instance')

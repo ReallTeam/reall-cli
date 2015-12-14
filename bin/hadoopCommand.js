@@ -3,7 +3,7 @@
  */
 
 var fs = require("fs"),
-    path = require("path"),
+    path = require('path'),
     reall = require('reall'),
     pretty = require('pretty-message');
 var slotJson,
@@ -14,8 +14,6 @@ function hadoopCommand(options) {
             if (options.reducer) {
                 if (options.input) {
                     if (options.output) {
-
-                        var initDateTime = new Date();
                         // reall.hadoop.mapReduce("Running the MapReduce",
                         //                        "/home/mapr/trainning/code/mapperByWeekday.py",
                         //                        "/home/mapr/trainning/code/reducerByWeekday.py",

@@ -3,7 +3,7 @@
  */
 
 var fs = require("fs"),
-    path = require("path"),
+    path = require('path'),
     mkdirp = require('mkdirp'),
     reall = require('reall'),
     pretty = require('pretty-message');
