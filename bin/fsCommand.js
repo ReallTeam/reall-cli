@@ -26,48 +26,28 @@ function validateTargetAndDestiny(options, command, callback) {
 function fsCommand(options) {
     if(options.put) {
         validateTargetAndDestiny(options, 'put', function() {
-
-            //reall fs -p -t ~/ReallHdop/job1/input/purchases_300.txt -d job1/input/purchases_300.txt
-
+            /**
+             * reall fs -p -t ~/ReallHdop/job1/input/purchases_300.txt -d reallJobs/job1/input/purchases_300.txt
+             * path.join('reallJobs', destiny)
+             */
             reall.hadoop.put("Running put", options.target, options.destiny, false, function (error, stdout, stderr, data) {
                 pretty.inform();
                 // pretty.inform(data.out);
                 pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
             });
-            // pretty.done("Put have been completed")
         })
     }
     else if(options.get) {
         validateTargetAndDestiny(options, 'get', function() {
-            pretty.done("Get have been completed")
+            /**
+             * reall fs -g -t reallJobs/job1/input/purchases_300.txt -d ~/ReallHdop/job1/output/purchases_300.txt
+             */
+            reall.hadoop.get("Running get", options.target, options.destiny, false, function (error, stdout, stderr, data) {
+                pretty.inform();
+                // pretty.inform(data.out);
+                pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
+            });
         })
-    }
-}
-
-function fsCommandX(options) {
-    if(options.put) {
-        if (options.target) {
-            if (options.destiny) {
-                // reall.hadoop.mapReduce("Running the MapReduce",
-                //                        "/home/mapr/trainning/code/mapperByWeekday.py",
-                //                        "/home/mapr/trainning/code/reducerByWeekday.py",
-            	// 		                  "input/mapperByWeekday/purchases_100.txt",
-                //                        "out/mapperByWeekday", false, function (error, stdout, stderr) {
-                reall.hadoop.mapReduce("Running MapReduce", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, false, function (error, stdout, stderr, data) {
-                    pretty.inform();
-                    // pretty.inform(data.out);
-                    pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
-                });
-            }
-            else {
-                pretty.inform("Please enter a valid destiny", "reall fs -h")
-            }
-        }
-        else {
-            pretty.inform("Please enter a valid target", "reall fs -h")
-        }
-    }
-    else if(options.get) {
     }
 }
 
