@@ -24,17 +24,20 @@ function addCommand(options) {
                         //                        "/home/mapr/trainning/code/reducerByWeekday.py",
                     	// 		                  "input/mapperByWeekday/purchases_100.txt",
                         //                        "out/mapperByWeekday", false, function (error, stdout, stderr)
+                        var jobNameId = options.job.replace(/\b./g, function(m){ return m.toUpperCase(); }).replace(/\s/g, '');
                         var jsonJob = {
-                            job: options.job,
+                            job: jobNameId,
+                            name: options.job,
                             mapper: options.mapper,
                             reducer: options.reducer,
                             combiner: isValidParameter(options.combiner),
                             transporter: isValidParameter(options.transporter),
-                            input: [options.job, 'input'].join('/'),
-                            output: [options.job, 'output'].join('/'),
-                            done: [options.job, 'done'].join('/'),
-                            fail: [options.job, 'fail'].join('/')
+                            input: [jobNameId, 'input'].join('/'),
+                            output: [jobNameId, 'output'].join('/'),
+                            done: [jobNameId, 'done'].join('/'),
+                            fail: [jobNameId, 'fail'].join('/')
                         }
+                        // str.replace(/\b./g, function(m){ return m.toUpperCase(); })
                         // console.log(JSON.stringify(jsonJob, null, 4));
 
                         var home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop');
