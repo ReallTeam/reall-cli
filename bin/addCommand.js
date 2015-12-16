@@ -79,36 +79,30 @@ function addCommand(options) {
                                                     else {
                                                         pretty.done("Local file system was correctly created");
 
-                                                        /**
-                                                         * TODO:
-                                                         *  1.  Add code to set the job details on ~/.reall.json file
-                                                         */
+                                                        // Add code to set the job details on $HOME/ReallHdop/.reall.json file
                                                         pretty.doing("Adding job config");
 
-                                                        // var reallJsonFile = path.join(process.cwd(), '.reall.json');
                                                         var reallJsonFile = path.join(home, '.reall.json');
-                                                        // __dirname
 
                                                         fs.exists(reallJsonFile, function (exists) {
-                                                            // if (exists)
-                                                            //     onExists(exists)
-                                                            // else
-                                                            //     onDontExists(exists);
+
+                                                            // Instance json object or require it
                                                             var reallJson = exists ? require(reallJsonFile) : {};
 
+                                                            // Instance jobs attribute or instance a new one
                                                             !reallJson.jobs && (reallJson['jobs'] = {});
-                                                            // !reallJson.jobs && (reallJson['jobs'] = {});
                                                             reallJson.jobs[jsonJob.job] = jsonJob;
 
+                                                            // Job name identifier is not necessary on Json object
                                                             delete jsonJob.job;
 
+                                                            // Update document on file system '$HOME/ReallHdop/.reall.json'
                                                             fs.writeFile(reallJsonFile, JSON.stringify(reallJson, null, 4), function (err) {
-                                                                // callback(err)
                                                                 if (err) {
-                                                                    pretty.failed("Fail adding job '%s' to config", options.job);
+                                                                    pretty.failed("Fail adding job '%s' to config file", options.job);
                                                                     throw err;
                                                                 } else {
-                                                                    pretty.done("Job '%s' successfully added to config", options.job);
+                                                                    pretty.done("Job '%s' successfully added to config file", options.job);
                                                                 }
                                                             });
                                                         });
