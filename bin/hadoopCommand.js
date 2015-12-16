@@ -14,11 +14,7 @@ function hadoopMapReduce(options) {
         if (options.reducer) {
             if (options.input) {
                 if (options.output) {
-                    // reall.hadoop.mapReduce("Running the MapReduce",
-                    //                        "/home/mapr/trainning/code/mapperByWeekday.py",
-                    //                        "/home/mapr/trainning/code/reducerByWeekday.py",
-                	// 		                  "input/mapperByWeekday/purchases_100.txt",
-                    //                        "out/mapperByWeekday", false, function (error, stdout, stderr) {
+
                     reall.hadoop.mapReduce("Running MapReduce", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, false, function (error, stdout, stderr, data) {
                         pretty.inform();
                         // pretty.inform(data.out);

@@ -10,6 +10,10 @@ var fs = require("fs"),
 var slotJson,
     slotJsonFile;
 
+function isValidParameter(parameter) {
+    return (parameter && parameter.toString().trim() == 'true') || !parameter ? undefined : parameter.toString().trim() ;
+}
+
 function addCommand(options) {
     if (options.job) {
             if (options.mapper) {
@@ -24,10 +28,10 @@ function addCommand(options) {
                             job: options.job,
                             mapper: options.mapper,
                             reducer: options.reducer,
-                            combiner: options.combiner,
-                            transporter: options.transporter,
-                            input: [options.job, 'input'/*, options.input*/].join('/'),
-                            output: [options.job, 'output'/*, options.output*/].join('/'),
+                            combiner: isValidParameter(options.combiner),
+                            transporter: isValidParameter(options.transporter),
+                            input: [options.job, 'input'].join('/'),
+                            output: [options.job, 'output'].join('/'),
                             done: [options.job, 'done'].join('/'),
                             fail: [options.job, 'fail'].join('/')
                         }
@@ -79,6 +83,36 @@ function addCommand(options) {
                                                          * TODO:
                                                          *  1.  Add code to set the job details on ~/.reall.json file
                                                          */
+                                                        pretty.doing("Adding job config");
+
+                                                        // var reallJsonFile = path.join(process.cwd(), '.reall.json');
+                                                        var reallJsonFile = path.join(home, '.reall.json');
+                                                        // __dirname
+
+                                                        fs.exists(reallJsonFile, function (exists) {
+                                                            // if (exists)
+                                                            //     onExists(exists)
+                                                            // else
+                                                            //     onDontExists(exists);
+                                                            var reallJson = exists ? require(reallJsonFile) : {};
+
+                                                            !reallJson.jobs && (reallJson['jobs'] = {});
+                                                            // !reallJson.jobs && (reallJson['jobs'] = {});
+                                                            reallJson.jobs[jsonJob.job] = jsonJob;
+
+                                                            delete jsonJob.job;
+
+                                                            fs.writeFile(reallJsonFile, JSON.stringify(reallJson, null, 4), function (err) {
+                                                                // callback(err)
+                                                                if (err) {
+                                                                    pretty.failed("Fail adding job '%s' to config", options.job);
+                                                                    throw err;
+                                                                } else {
+                                                                    pretty.done("Job '%s' successfully added to config", options.job);
+                                                                }
+                                                            });
+                                                        });
+
                                                     }
                                                 });
                                             }
