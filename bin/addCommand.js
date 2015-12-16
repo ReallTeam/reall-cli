@@ -24,7 +24,9 @@ function addCommand(options) {
                         //                        "/home/mapr/trainning/code/reducerByWeekday.py",
                     	// 		                  "input/mapperByWeekday/purchases_100.txt",
                         //                        "out/mapperByWeekday", false, function (error, stdout, stderr)
-                        var jobNameId = options.job.replace(/\b./g, function(m){ return m.toUpperCase(); }).replace(/\s/g, '');
+                        var jobNameId = options.job.replace(/\b./g, function(m){ return m.toUpperCase(); }).replace(/\s/g, ''),
+                            home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop')
+                            ;
                         var jsonJob = {
                             job: jobNameId,
                             name: options.job,
@@ -37,14 +39,12 @@ function addCommand(options) {
                             done: [jobNameId, 'done'].join('/'),
                             fail: [jobNameId, 'fail'].join('/')
                         }
-                        // str.replace(/\b./g, function(m){ return m.toUpperCase(); })
-                        // console.log(JSON.stringify(jsonJob, null, 4));
-
-                        var home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop');
 
                         pretty.doing("Creating '%s' local file system", jsonJob.job);
-                        pretty.inform("home:\t\t", home);
+                        pretty.inform("mapper:\t", jsonJob.mapper);
+                        pretty.inform("reducer:\t", jsonJob.reducer);
                         pretty.inform("--");
+                        pretty.inform("home:\t\t", home);
                         pretty.inform("input:\t", jsonJob.input);
                         pretty.inform("output:\t", jsonJob.output);
                         pretty.inform("done:\t\t", jsonJob.done);
