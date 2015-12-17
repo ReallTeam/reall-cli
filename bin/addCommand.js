@@ -18,7 +18,7 @@ function addCommand(options) {
     if (options.job) {
             if (options.mapper) {
                 if (options.reducer) {
-                    if (options.input) {
+                    // if (options.input) {
                         // reall.hadoop.mapReduce("Running the MapReduce",
                         //                        "/home/mapr/trainning/code/mapperByWeekday.py",
                         //                        "/home/mapr/trainning/code/reducerByWeekday.py",
@@ -34,7 +34,7 @@ function addCommand(options) {
                             reducer: options.reducer,
                             combiner: isValidParameter(options.combiner),
                             transporter: isValidParameter(options.transporter),
-                            input: [jobNameId, 'input'].join('/'),
+                            input: isValidParameter(options.input) ? [jobNameId, options.input.trim()].join('/') : [jobNameId, 'input'].join('/'),
                             output: [jobNameId, 'output'].join('/'),
                             done: [jobNameId, 'done'].join('/'),
                             fail: [jobNameId, 'fail'].join('/')
@@ -118,10 +118,10 @@ function addCommand(options) {
                                 });
                             }
                         });
-                    }
-                    else {
-                        pretty.inform("Please enter a valid input folder", "reall add -h")
-                    }
+                    // }
+                    // else {
+                    //     pretty.inform("Please enter a valid input folder", "reall add -h")
+                    // }
                 }
                 else {
                     pretty.inform("Please enter a valid reducer", "reall add -h")
