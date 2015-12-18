@@ -26,7 +26,7 @@ To install just type `npm install reall-cli -g`:
     reall hd -j MyFirstReallHadoop
 
 # Create your first (medium size) Reall Hadoop Job
-Just go ahead and practice something a little big bigger, this time we will use the `input/purchases.txt` which is `202Mb` file:
+Just go ahead and practice something bigger, this time we will use the `input/purchases.txt` which is a `202Mb` file:
 
     # Creating a Reall Hadoop Job:
     #

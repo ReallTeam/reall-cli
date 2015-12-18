@@ -1,6 +1,6 @@
 {
   "name": "reall-cli",
-  "version": "0.0.43",
+  "version": "0.0.45",
   "description": "A command line interface for Reall Hadoop Tool",
   "main": "index.js",
   "scripts": {
