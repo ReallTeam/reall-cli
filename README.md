@@ -1,8 +1,8 @@
 [![npm version](https://badge.fury.io/js/reall-cli.svg)](https://badge.fury.io/js/reall-cli)
 
-# [Reall Command Line Interface](http://www.ReAll.io)
+# [Reall Command Line Interface](https://github.com/ReallTeam/reall-cli)
 
-> The official Command-Line for **Reall Project**, a Hadoop Tool for easy handle Job Automation and Real Time Display base on HDFS and MapReduce.
+> The official Command-Line for **Reall Project**, a Hadoop Tool for easy Job Automation and Real Time Display base on HDFS and MapReduce.
 
 # How to install
 
