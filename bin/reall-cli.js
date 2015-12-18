@@ -58,7 +58,7 @@ program.command('fs')
     .option("-t, --target [target]", "The targeted files to be trasfered")
     .option("-d, --destiny [destiny]", "The destiny folder where to locate trasfered files")
     .action(function (options) {
-        
+
         fsCommand(options);
     }
 );

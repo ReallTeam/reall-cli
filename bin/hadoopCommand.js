@@ -38,10 +38,48 @@ function hadoopMapReduce(options) {
     }
 }
 
-function reallJob(options) {
-    pretty.alert('');
-    pretty.alert('This command is under construction');
-    pretty.alert('');
+function runReallJob(options) {
+
+    var home = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'ReallHdop'),
+        reallJsonFile = path.join(home, '.reall.json');
+
+    fs.exists(reallJsonFile, function (exists) {
+
+        if (exists) {
+            // Get $HOME/ReallHdop/.reall.json from file system.
+            var reallJson = require(reallJsonFile),
+                reallJob = reallJson.jobs && reallJson.jobs[options.job.toString().trim()];
+
+            if (reallJob) {
+                // Build parameters
+                options.mapper = path.join(home, options.job, reallJob.mapper);
+                options.reducer = path.join(home, options.job, reallJob.reducer);
+                options.combiner = reallJob.combiner;
+                options.transporter = reallJob.transporter;
+                options.input = path.join('ReallHdop', /*home,*/ options.job, reallJob.input);
+                options.output = path.join('ReallHdop', /*home,*/ options.job, reallJob.output);
+                options.done = reallJob.done;
+                options.fail = reallJob.fail;
+
+                // Call put files to HDFS input folder
+                // reall.hadoop.put("Running put", options.target, options.destiny, false, function (error, stdout, stderr, data) {
+                reall.hadoop.put("Running put", path.join(home, options.job, reallJob.input), path.join('ReallHdop', options.job, reallJob.input), false, function (error, stdout, stderr, data) {
+                    // pretty.inform();
+                    // // pretty.inform(data.out);
+                    // pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
+
+                    pretty.inform('')
+                    
+                    // Call MapReduce
+                    hadoopMapReduce(options);
+                });
+            } else {
+                pretty.inform("Please enter a valid job name identifier, '%s' does not exists", options.job)
+            }
+        } else {
+            pretty.inform("It looks like you don't have the $HOME/ReallHdop/.reall.json file on place")
+        }
+    });
 }
 
 function hadoopCommand(options) {
@@ -50,7 +88,7 @@ function hadoopCommand(options) {
         // reall hd -j job1
         //
         if (options.job.toString().trim() != 'true' && options.job.toString().trim() != '') {
-            reallJob(options);
+            runReallJob(options);
         }
         else {
             pretty.inform("Please enter a valid job name identifier", "reall hd -h")
