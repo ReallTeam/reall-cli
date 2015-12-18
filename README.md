@@ -12,35 +12,36 @@ To install just type `npm install reall-cli -g`:
 
     # Creating a Reall Hadoop Job:
     #
-    $ reall add -j "My First Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t -c
-    $ cd ~/ReallHdop/MyFirstReallHadoop/
+    reall add -j "My First Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t -c
+    cd ~/ReallHdop/MyFirstReallHadoop/
 
     # Download scripts and test datasets
     #
-    $ curl -l https://s3-us-west-2.amazonaws.com/reall/data/purchases_100.txt -o input/purchases_100.txt
-    $ curl -l https://s3-us-west-2.amazonaws.com/reall/code/mapperByWeekday.py -o mapperByWeekday.py
-    $ curl -l https://s3-us-west-2.amazonaws.com/reall/code/reducerByWeekday.py -o reducerByWeekday.py
+    curl -l https://s3-us-west-2.amazonaws.com/reall/data/purchases_100.txt -o input/purchases_100.txt
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/mapperByWeekday.py -o mapperByWeekday.py
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/reducerByWeekday.py -o reducerByWeekday.py
 
     # Run the job
     #
-    $ reall hd -j MyFirstReallHadoop
+    reall hd -j MyFirstReallHadoop
 
 # Create your first (medium size) Reall Hadoop Job
 Just go ahead and practice something a little big bigger, this time we will use the `input/purchases.txt` which is `202Mb` file:
+
     # Creating a Reall Hadoop Job:
     #
-    $ reall add -j "My First Medium Size Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t -c
-    $ cd ~/ReallHdop/MyFirstMediumSizeReallHadoop/
+    reall add -j "My First Medium Size Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t -c
+    cd ~/ReallHdop/MyFirstMediumSizeReallHadoop/
 
     # Download scripts and test datasets
     #
-    $ curl -l https://s3-us-west-2.amazonaws.com/reall/data/purchases.txt -o input/purchases.txt
-    $ curl -l https://s3-us-west-2.amazonaws.com/reall/code/mapperByWeekday.py -o mapperByWeekday.py
-    $ curl -l https://s3-us-west-2.amazonaws.com/reall/code/reducerByWeekday.py -o reducerByWeekday.py
+    curl -l https://s3-us-west-2.amazonaws.com/reall/data/purchases.txt -o input/purchases.txt
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/mapperByWeekday.py -o mapperByWeekday.py
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/reducerByWeekday.py -o reducerByWeekday.py
 
     # Run the job
     #
-    $ reall hd -j MyFirstMediumSizeReallHadoop
+    reall hd -j MyFirstMediumSizeReallHadoop
 
 # Using command line help
 
