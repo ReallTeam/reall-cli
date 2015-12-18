@@ -2,7 +2,7 @@
 
 # [Reall Command Line Interface](http://www.ReAll.io)
 
-> The official Command-Line Interface for **Reall Project**, a Hadoop Tool for easy handle hadoop jobs base on HDFS and MapReduce.
+> The official Command-Line for **Reall Project**, a Hadoop Tool for easy handle Job Automation and Real Time Display base on HDFS and MapReduce.
 
 # How to install
 
@@ -16,7 +16,7 @@ To install just type `npm install reall-cli -g`:
     $ cd ~/ReallHdop/MyFirstReallHadoop/
 
     # Download scripts and test datasets
-    # 
+    #
     $ curl -l https://s3-us-west-2.amazonaws.com/reall/data/purchases_100.txt -o input/purchases_100.txt
     $ curl -l https://s3-us-west-2.amazonaws.com/reall/code/mapperByWeekday.py -o code/mapperByWeekday.py
     $ curl -l https://s3-us-west-2.amazonaws.com/reall/code/reducerByWeekday.py -o code/reducerByWeekday.py
