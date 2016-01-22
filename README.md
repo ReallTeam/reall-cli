@@ -6,7 +6,15 @@
 
 # How to install
 
-To install just type `npm install reall-cli -g`:
+To install just type `npm install reall-cli -g`, but remember you need to have previously installed Node.js.
+
+All apps and scripts used in demos are Python scripts, so please be sure you have installed Python and `pymongo`  MongoDB river (you can see more info on https://pypi.python.org/pypi/setuptools):
+
+    # If you don't have installed 'easy_install', please install it (also you can use pip if you have it)
+    curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
+
+    # And then install pymongo
+    sudo python -m easy_install pymongo
 
 # Create your first Reall Hadoop Job
 
