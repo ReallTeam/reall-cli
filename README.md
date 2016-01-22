@@ -31,7 +31,7 @@ Just go ahead and practice something bigger, this time we will use the `input/pu
     # Creating a Reall Hadoop Job:
     #
     reall add -j "My First Medium Size Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t -c
-    cd ~/ReallHdop/MyFirstMediumSizeReallHadoop/
+    cd ~/ReallHdop/MyFirstReallHadoopMediumSize/
 
     # Download scripts and test datasets
     #
@@ -41,7 +41,27 @@ Just go ahead and practice something bigger, this time we will use the `input/pu
 
     # Run the job
     #
-    reall hd -j MyFirstMediumSizeReallHadoop
+    reall hd -j MyFirstReallHadoopMediumSize
+
+# Create a Reall Hadoop Job using Transporter Services
+Now is time to use **transporters**, in that way you will be able to run a script just after Haddop has finished the execution.
+**Transporter Services** will receive the `Job Id` as `input parameter` and reduced output data as `Stream`:
+
+    # Creating a Reall Hadoop Job:
+    #
+    reall add -j "My First Medium Size Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t "transporterByWeekday.py" -c
+    cd ~/ReallHdop/MyFirstReallHadoopTransporter/
+
+    # Download scripts and test datasets
+    #
+    curl -l https://s3-us-west-2.amazonaws.com/reall/data/purchases_200.txt -o input/purchases_200.txt
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/mapperByWeekday.py -o mapperByWeekday.py
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/reducerByWeekday.py -o reducerByWeekday.py
+    curl -l https://s3-us-west-2.amazonaws.com/reall/code/transporterByWeekday.py -o transporterByWeekday.py
+
+    # Run the job
+    #
+    reall hd -j MyFirstReallHadoopTransporter
 
 # Using command line help
 

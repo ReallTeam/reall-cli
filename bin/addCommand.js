@@ -39,10 +39,13 @@ function addCommand(options) {
                         fail: [/*jobNameId,*/ 'fail'].join('/')
                     }
 
-                    pretty.doing("Creating '%s' local file system", jsonJob.job);
+                    pretty.doing("Creating a new Job '%s'", jsonJob.job);
                     pretty.inform("mapper:\t", jsonJob.mapper);
                     pretty.inform("reducer:\t", jsonJob.reducer);
+                    jsonJob.combiner && pretty.inform("combiner:\t", jsonJob.combiner);
+                    jsonJob.transporter && pretty.inform("transporter:\t", jsonJob.transporter);
                     pretty.inform("--");
+                    pretty.inform("Local file system:");
                     pretty.inform("home:\t\t", home);
                     pretty.inform("input:\t", jsonJob.input);
                     pretty.inform("output:\t", jsonJob.output);

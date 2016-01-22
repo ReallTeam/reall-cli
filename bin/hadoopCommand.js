@@ -15,7 +15,7 @@ function hadoopMapReduce(options) {
             if (options.input) {
                 if (options.output) {
 
-                    reall.hadoop.mapReduce("Running MapReduce", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, false, function (error, stdout, stderr, data) {
+                    reall.hadoop.mapReduce("Running MapReduce", options.mapper, options.reducer, options.combiner, options.transporter, options.input, options.output, options.verbose, function (error, stdout, stderr, data) {
                         pretty.inform();
                         // pretty.inform(data.out);
                         pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
@@ -63,13 +63,13 @@ function runReallJob(options) {
 
                 // Call put files to HDFS input folder
                 // reall.hadoop.put("Running put", options.target, options.destiny, false, function (error, stdout, stderr, data) {
-                reall.hadoop.put("Running put", path.join(home, options.job, reallJob.input), path.join('ReallHdop', options.job, reallJob.input), false, function (error, stdout, stderr, data) {
+                reall.hadoop.put("Running put", path.join(home, options.job, reallJob.input), path.join('ReallHdop', options.job, reallJob.input), options.verbose, function (error, stdout, stderr, data) {
                     // pretty.inform();
                     // // pretty.inform(data.out);
                     // pretty.inform('Elapsed time: %s seconds, from (%s) to (%s)', Math.round((data.end.getTime() - data.init.getTime())/1000), data.init.toLocaleString(), data.end.toLocaleString());
 
                     pretty.inform('')
-                    
+
                     // Call MapReduce
                     hadoopMapReduce(options);
                 });
@@ -83,6 +83,9 @@ function runReallJob(options) {
 }
 
 function hadoopCommand(options) {
+    // Use or not verbose mode
+    options.verbose = options.verbose || false;
+
     if (options.job) {
         //
         // reall hd -j job1

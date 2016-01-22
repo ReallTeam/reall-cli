@@ -42,6 +42,7 @@ program.command('hd')
     .option("-i, --input [input]", "The input directory for the hadoop command")
     .option("-o, --output [output]", "The output directory for the hadoop command")
     .option("-t, --transporter [transporter]", "The transporter script to be used after hadoop command completes successfully")
+    .option("-v, --verbose [verbose]", "The output directory for the hadoop command")
     .action(function (options) {
 
         hadoopCommand(options);
