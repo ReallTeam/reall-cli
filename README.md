@@ -49,7 +49,7 @@ Now is time to use **transporters**, in that way you will be able to run a scrip
 
     # Creating a Reall Hadoop Job:
     #
-    reall add -j "My First Medium Size Reall Hadoop" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t "transporterByWeekday.py" -c
+    reall add -j "My First Reall Hadoop Transporter" -m "mapperByWeekday.py" -r "reducerByWeekday.py" -t "transporterByWeekday.py" -c
     cd ~/ReallHdop/MyFirstReallHadoopTransporter/
 
     # Download scripts and test datasets
