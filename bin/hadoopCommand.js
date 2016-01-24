@@ -55,7 +55,9 @@ function runReallJob(options) {
                 options.mapper = path.join(home, options.job, reallJob.mapper);
                 options.reducer = path.join(home, options.job, reallJob.reducer);
                 options.combiner = reallJob.combiner;
-                options.transporter = reallJob.transporter;
+                // options.transporter = reallJob.transporter;
+                options.transporter = reallJob.transporter ? path.join(home, options.job, reallJob.transporter) : reallJob.transporter;
+                //
                 options.input = path.join('ReallHdop', /*home,*/ options.job, reallJob.input);
                 options.output = path.join('ReallHdop', /*home,*/ options.job, reallJob.output);
                 options.done = reallJob.done;
